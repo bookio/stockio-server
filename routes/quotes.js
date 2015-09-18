@@ -22,6 +22,14 @@ router.get('/:symbol', function (request, response) {
 			
 		});
 
+		quotes.sort(function(a, b) {
+			var dateA = new Date(a.date);
+			var dateB = new Date(b.date);
+			
+			return dateA.getTime() - dateB.getTime();
+		});
+
+
 		server.reply({
 			symbol: request.params.symbol,
 			quotes: quotes

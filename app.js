@@ -62,6 +62,7 @@ function loadIt()  {
 	
 	stocks.forEach(function(stock){
 
+/*
 		foo.fetch(stock.symbol, 2006);
 		foo.fetch(stock.symbol, 2007);
 		foo.fetch(stock.symbol, 2008);
@@ -69,6 +70,7 @@ function loadIt()  {
 		foo.fetch(stock.symbol, 2010);
 		foo.fetch(stock.symbol, 2011);
 		foo.fetch(stock.symbol, 2012);
+		*/
 		foo.fetch(stock.symbol, 2013);
 		foo.fetch(stock.symbol, 2014);
 
@@ -82,6 +84,6 @@ function loadIt()  {
 
 //sync();
 
-loadIt();
+//loadIt();
 
 module.exports = app;
