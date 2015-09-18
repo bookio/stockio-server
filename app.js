@@ -33,27 +33,46 @@ app.listen(app.get('port'), function() {
 });
 
 
-//var x = require('./model/quotes.js');
-//x.sync();
 
+
+function sync() {
+	var x = require('./model/quotes.js');
+	x.sync();
+	
+}
 
 function loadIt()  {
 
 	var Foo = require('./foo.js');
 	var foo = new Foo();
-	
+
 	var stocks = [
-//		{symbol:'T', name:'AT&T'},
-//		{symbol:'SHB-B.ST', name:'Handelsbanken'},
-//		{symbol:'HM-B.ST', name:'H&M'},
-//		{symbol:'^OMX', name:'OMX Index'},
-		{symbol:'GOLD', name:'Guld'},
+
+		{ 'name':'AT&T', 'symbol':'T' },
+		{ 'name':'Ares Capital', 'symbol':'ARCC' },
+		{ 'name':'Castellum', 'symbol':'CAST.ST' },
+		{ 'name':'H&M', 'symbol':'HM-B.ST' },
+		{ 'name':'NCC', 'symbol':'NCC-B.ST' },
+		{ 'name':'Industrivärlden', 'symbol':'INDU-C.ST' },
+		{ 'name':'Pfizer', 'symbol':'PFE' },
+		{ 'name':'SHB', 'symbol':'SHB-B.ST' },
+		{ 'name':'Guld',  'symbol':'GOLD' }	,
+		{ 'name':'OMX Index',  'symbol':'^OMX' }	
 	];
 	
 	stocks.forEach(function(stock){
-		foo.fetch(stock.symbol, stock.name, 2013);
-		foo.fetch(stock.symbol, stock.name, 2014);
-		foo.fetch(stock.symbol, stock.name, 2015);
+
+		foo.fetch(stock.symbol, 2006);
+		foo.fetch(stock.symbol, 2007);
+		foo.fetch(stock.symbol, 2008);
+		foo.fetch(stock.symbol, 2009);
+		foo.fetch(stock.symbol, 2010);
+		foo.fetch(stock.symbol, 2011);
+		foo.fetch(stock.symbol, 2012);
+		foo.fetch(stock.symbol, 2013);
+		foo.fetch(stock.symbol, 2014);
+
+		foo.fetch(stock.symbol, 2015);
 		
 	});
 
@@ -61,6 +80,7 @@ function loadIt()  {
 	
 }
 
+//sync();
 
 loadIt();
 

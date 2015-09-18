@@ -15,7 +15,7 @@ module.exports = sequelize.define('quotes', {
 		unique        : 'compositeIndex'
 	},
 	
-	'data': {
+	'quotes': {
 		type          : Sequelize.JSON,
 		allowNull     : false,
 		defaultValue  : {}

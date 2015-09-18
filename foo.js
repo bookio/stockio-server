@@ -11,7 +11,7 @@ module.exports = function() {
 	var self = this;
 
 	
-	function fetch(symbol, name, year) {
+	function fetch(symbol, year) {
 		
 		var template = 'select * from yahoo.finance.historicaldata where symbol = "%s" and startDate = "%04d-01-01" and endDate = "%04d-12-31"';
 		var query    = sprintf(template, symbol, year, year);
@@ -35,41 +35,33 @@ module.exports = function() {
 					if (!util.isArray(results))
 						results = [results];
 	
-					var data = {};
-					
-					data.symbol = symbol;
-					data.quotes = [];
-					data.name = name;
+					var quotes = [];
 					
 					results.forEach(function(result) {
 						var item = {};
-						item.low = parseFloat(result.Low);
-						item.high = parseFloat(result.High);
-						item.open = parseFloat(result.Open);
+						item.low   = parseFloat(result.Low);
+						item.high  = parseFloat(result.High);
+						item.open  = parseFloat(result.Open);
 						item.close = parseFloat(result.Close);
-						item.date = result.Date;
-						data.quotes.push(item);
+						item.date  = result.Date;
+						quotes.push(item);
 						
 					});
-					/*
-					data.quotes.sort(function(a, b) {
-						var dateA = new Date(a);
-						var dateB = new Date(b);
+
+					quotes.sort(function(a, b) {
+						var dateA = new Date(a.date);
+						var dateB = new Date(b.date);
 						
-						if (a < b)
-							return -1;
-						if (a > b)
-							return 1;
-						return 0;
-						//return dateA.valueOf() - dateB.valueOf();
+						return dateA.valueOf() - dateB.valueOf();
 					});
-					*/
-					//console.log(data.quotes);
+
 
 					var record = {};
+					
 					record.symbol = symbol;
-					record.year = year;
-					record.data = data;
+					record.year   = year;
+					record.quotes = quotes;
+
 					// Save it
 					Quotes.upsert(record);
 
