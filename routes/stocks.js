@@ -11,7 +11,7 @@ router.get('/', function (request, response) {
 
 	var server = new Server(request, response);
 	
-	stocks.findAll().then(function(stocks) {
+	stocks.findAll({where: {symbol: 'HM-B.ST'}}).then(function(stocks) {
 	
 		server.reply(stocks);
 		
@@ -22,5 +22,5 @@ router.get('/', function (request, response) {
 });
 
 
-module.exports = router;
+	module.exports = router;
 

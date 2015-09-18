@@ -37,10 +37,27 @@ x.sync();
 */
 
 
-var Foo = require('./foo.js');
-var foo = new Foo();
-//foo.fetch('HM-B.ST', 2014);
-//foo.fetch('INDU-C.ST', 2015);
+function loadIt()  {
 
+	var Foo = require('./foo.js');
+	var foo = new Foo();
+	
+	var symbols = [
+		'T','ARCC','CAST.ST','HM-B.ST','NCC-B.ST', 'INDU-C.ST', 'PFE', 'SHB-B.ST'
+	];
+
+	for (var i = 0; i < symbols.length; i++) {
+		foo.fetch(symbols[i], 2012	);
+		foo.fetch(symbols[i], 2013);
+		foo.fetch(symbols[i], 2014);
+		foo.fetch(symbols[i], 2015);
+		
+	}	
+	
+	
+}
+
+
+//loadIt();
 
 module.exports = app;
