@@ -7,11 +7,11 @@ var sequelize    = require('../sequelize')
 
 var stocks = require('../model/stocks.js');
 
-router.get('/', function (request, response) {
+router.get('/:symbol', function (request, response) {
 
 	var server = new Server(request, response);
 	
-	stocks.findAll({where: {symbol: 'HM-B.ST'}, order: [['date', 'ASC']]}).then(function(stocks) {
+	stocks.findAll({where: {symbol: request.params.symbol}, order: [['date', 'ASC']]}).then(function(stocks) {
 	
 		server.reply(stocks);
 		
