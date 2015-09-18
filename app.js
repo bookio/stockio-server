@@ -24,6 +24,7 @@ app.use(cors());
 
 app.use(bodyParser.json({limit: '50mb'}));
 app.use('/stocks', require('./routes/stocks'));
+app.use('/quotes', require('./routes/quotes'));
 
 
 
@@ -31,10 +32,9 @@ app.listen(app.get('port'), function() {
 	console.log("Node app is running on port " + app.get('port'));
 });
 
-/*
-var x = require('./model/stocks.js');
-x.sync();
-*/
+
+//var x = require('./model/quotes.js');
+//x.sync();
 
 
 function loadIt()  {
@@ -42,22 +42,26 @@ function loadIt()  {
 	var Foo = require('./foo.js');
 	var foo = new Foo();
 	
-	var symbols = [
-		'T','ARCC','CAST.ST','HM-B.ST','NCC-B.ST', 'INDU-C.ST', 'PFE', 'SHB-B.ST'
+	var stocks = [
+//		{symbol:'T', name:'AT&T'},
+//		{symbol:'SHB-B.ST', name:'Handelsbanken'},
+//		{symbol:'HM-B.ST', name:'H&M'},
+//		{symbol:'^OMX', name:'OMX Index'},
+		{symbol:'GOLD', name:'Guld'},
 	];
-
-	for (var i = 0; i < symbols.length; i++) {
-		foo.fetch(symbols[i], 2012	);
-		foo.fetch(symbols[i], 2013);
-		foo.fetch(symbols[i], 2014);
-		foo.fetch(symbols[i], 2015);
+	
+	stocks.forEach(function(stock){
+		foo.fetch(stock.symbol, stock.name, 2013);
+		foo.fetch(stock.symbol, stock.name, 2014);
+		foo.fetch(stock.symbol, stock.name, 2015);
 		
-	}	
+	});
+
 	
 	
 }
 
 
-//loadIt();
+loadIt();
 
 module.exports = app;
