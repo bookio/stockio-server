@@ -61,6 +61,8 @@ module.exports = function() {
 					record.symbol = symbol;
 					record.year   = year;
 					record.quotes = quotes;
+					
+					console.log('Loaded', symbol, year);
 
 					// Save it
 					Quotes.upsert(record);
@@ -71,7 +73,7 @@ module.exports = function() {
 					throw new Error('Invalid status code');
 			}
 			catch(error) {
-				console.log(error);
+				console.log('***************error', error);
 					
 			}
 			

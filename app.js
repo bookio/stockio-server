@@ -61,20 +61,10 @@ function loadIt()  {
 	];
 	
 	stocks.forEach(function(stock){
-
-/*
-		foo.fetch(stock.symbol, 2006);
-		foo.fetch(stock.symbol, 2007);
-		foo.fetch(stock.symbol, 2008);
-		foo.fetch(stock.symbol, 2009);
-		foo.fetch(stock.symbol, 2010);
-		foo.fetch(stock.symbol, 2011);
-		foo.fetch(stock.symbol, 2012);
-		*/
-		foo.fetch(stock.symbol, 2013);
-		foo.fetch(stock.symbol, 2014);
-
-		foo.fetch(stock.symbol, 2015);
+		for (var year = 1995; year <= 2015; year++) {
+			foo.fetch(stock.symbol, year);
+			
+		}
 		
 	});
 
@@ -84,6 +74,6 @@ function loadIt()  {
 
 //sync();
 
-//loadIt();
+loadIt();
 
 module.exports = app;
