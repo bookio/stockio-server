@@ -74,6 +74,6 @@ function loadIt()  {
 
 //sync();
 
-loadIt();
+//loadIt();
 
 module.exports = app;
