@@ -1,16 +1,15 @@
 var router       = require('express').Router();
 var uuid         = require('node-uuid');
-
-var sprintf      = require('../sprintf');
-var Server       = require('../server');
 var Promise      = require('promise');
-var sequelize    = require('../sequelize');
+var util         = require('util');
+var request      = require('request');
+var events       = require('events');
+var extend       = require('extend');
 
-var util     = require('util');
-var request  = require('request');
-var events   = require('events');
-var extend   = require('extend');
-var sprintf  = require('./sprintf.js');
+var sprintf      = require('../sprintf.js');
+var Server       = require('../server.js');
+var sequelize    = require('../sequelize.js');
+
 
 
 
