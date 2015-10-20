@@ -99,10 +99,8 @@ router.get('/:symbol', function (request, response) {
 			return dateA.valueOf() - dateB.valueOf();
 		});		
 
-		quotes.push.apply(quotes, b)
-		
-	});
 		server.reply(quotes);
+		
 	});
 	
 });
