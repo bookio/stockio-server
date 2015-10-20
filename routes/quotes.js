@@ -136,5 +136,6 @@ router.get('/:symbol', function (request, response) {
 	
 });
 
+*/
 
 module.exports = router;
