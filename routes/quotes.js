@@ -43,21 +43,16 @@ function fetch(symbol, year) {
 					
 					results.forEach(function(result) {
 						var item = {};
-						item.low   = parseFloat(result.Low);
-						item.high  = parseFloat(result.High);
-						item.open  = parseFloat(result.Open);
-						item.close = parseFloat(result.Close);
+						//item.low   = parseFloat(result.Low);
+						//item.high  = parseFloat(result.High);
+						//item.open  = parseFloat(result.Open);
+						item.quote = parseFloat(result.Close);
 						item.date  = result.Date;
 						quotes.push(item);
 						
 					});
 	
-					quotes.sort(function(a, b) {
-						var dateA = new Date(a.date);
-						var dateB = new Date(b.date);
-						
-						return dateA.valueOf() - dateB.valueOf();
-					});
+
 					
 					resolve(quotes);
 
@@ -83,9 +78,30 @@ function fetch(symbol, year) {
 router.get('/:symbol', function (request, response) {
 
 	var server = new Server(request, response);
-	var promise = fetch(request.params.symbol, 2015);
 	
-	promise.then(function(quotes) {
+	var promises = [];
+	
+	promises.push(fetch(request.params.symbol, 2015));
+	promises.push(fetch(request.params.symbol, 2014));
+	
+	Promise.all(promises).then(function(results) {
+
+		var quotes = [];
+		
+		results.forEach(function(item) {
+			quotes.push.apply(quotes, item);
+		});
+
+		quotes.sort(function(a, b) {
+			var dateA = new Date(a.date);
+			var dateB = new Date(b.date);
+			
+			return dateA.valueOf() - dateB.valueOf();
+		});		
+
+		quotes.push.apply(quotes, b)
+		
+	});
 		server.reply(quotes);
 	});
 	
